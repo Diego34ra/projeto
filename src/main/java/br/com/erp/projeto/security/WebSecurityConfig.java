@@ -1,6 +1,5 @@
 package br.com.erp.projeto.security;
 
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -37,11 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(SWAGGER_WHITELIST).permitAll()
-                .antMatchers(HttpMethod.POST,"/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/users").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/v1/usuario").permitAll()
-                .antMatchers(HttpMethod.GET,"/users").hasAnyRole("USERS","MANAGERS")
-                .antMatchers("/managers").hasAnyRole("MANAGERS")
+                .antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/users").hasRole("MANAGERS")
+                .antMatchers(HttpMethod.POST,"/api/v1/product").permitAll()
+                .antMatchers("/managers").hasRole("MANAGERS")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

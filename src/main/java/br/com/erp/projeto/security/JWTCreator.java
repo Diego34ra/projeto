@@ -1,5 +1,6 @@
 package br.com.erp.projeto.security;
 
+import br.com.erp.projeto.exceptions.ResourceForbiddenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -7,6 +8,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import org.springframework.security.access.AccessDeniedException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +25,7 @@ public class JWTCreator {
     }
 
     public static JWTObject create(String token,String prefix,String key)
-            throws ExpiredJwtException, UnsupportedJwtException, MalformedJwtException, SignatureException {
+            throws AccessDeniedException {
         JWTObject object = new JWTObject();
         token = token.replace(prefix, "");
         Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();

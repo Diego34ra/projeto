@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 @RestController
+@RequestMapping("api/v1/login")
 public class LoginController {
     @Autowired
     private PasswordEncoder encoder;
@@ -22,7 +24,7 @@ public class LoginController {
     @Autowired
     private UsuarioRepository repository;
 
-    @PostMapping("/login")
+    @PostMapping
     public Sessao logar(@RequestBody Login login){
         Usuario user = repository.findByUsername(login.getUsername());
         if(user!=null) {
