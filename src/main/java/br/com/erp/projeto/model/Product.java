@@ -31,5 +31,5 @@ public class Product {
     private Integer qtUnit;
 
     @Column(nullable = false)
-    private Integer quantity;
+    private Integer stock;
 }

@@ -5,7 +5,7 @@ import br.com.erp.projeto.exceptions.ResourceForbiddenException;
 import br.com.erp.projeto.exceptions.ResourceNotFoundException;
 import br.com.erp.projeto.model.Usuario;
 import br.com.erp.projeto.services.UsuarioService;
-import lombok.AllArgsConstructor;
+import io.swagger.annotations.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/users")
-@AllArgsConstructor
 public class UsuarioController {
 
     @Autowired
@@ -36,7 +35,7 @@ public class UsuarioController {
     @GetMapping("{id}")
     public ResponseEntity<Usuario> findById(@RequestHeader("Authorization") String authHeader, @PathVariable Integer id) throws ResourceNotFoundException {
         var cliente = usuarioService.findById(id);
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.ok().body(cliente);
     }
 
     @DeleteMapping("{id}")

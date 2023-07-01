@@ -41,4 +41,37 @@ public class ProductService {
         return product;
     }
 
+    public MessageResponseDTO updateProduct(Integer id, Product productUpdate) throws ResourceNotFoundException {
+        Product productAntigo = verificaSeExiste(id);
+        if(productUpdate.getEan()!=null)
+            productAntigo.setEan(productUpdate.getEan());
+        if(productUpdate.getName()!=null)
+            productAntigo.setName(productUpdate.getName());
+        if(productUpdate.getPrice()!=null)
+            productAntigo.setPrice(productUpdate.getPrice());
+        if(productUpdate.getStock()!=null)
+            productAntigo.setStock(productUpdate.getStock());
+        if(productUpdate.getQtUnit()!=null)
+            productAntigo.setQtUnit(productUpdate.getQtUnit());
+        productRepository.save(productAntigo);
+        return MessageResponseDTO
+                .builder()
+                .code(200)
+                .status("Ok")
+                .message("Produto atualizado com sucesso")
+                .build();
+    }
+
+    public MessageResponseDTO deleteById(Integer id) throws ResourceNotFoundException {
+        productRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Produto com o id "+id+" não foi encontrado."));
+        productRepository.deleteById(id);
+        return MessageResponseDTO
+                .builder()
+                .code(200)
+                .status("Ok")
+                .message("Produto deletado com sucesso.")
+                .build();
+    }
+
 }

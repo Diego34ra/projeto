@@ -23,12 +23,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(errorResponse);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), status.value(), "Problema na comunicação com o servidor.", getRequestPath());
-        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
+//        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+//        ErrorDetails errorDetails = new ErrorDetails(new Date(), status.value(), "Problema na comunicação com o servidor.", getRequestPath());
+//        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<String> handleAccessDeniedException(AccessDeniedException ex) {
