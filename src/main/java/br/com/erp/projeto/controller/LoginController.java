@@ -1,7 +1,7 @@
 package br.com.erp.projeto.controller;
 
-import br.com.erp.projeto.dtos.Login;
-import br.com.erp.projeto.dtos.Sessao;
+import br.com.erp.projeto.dtos.request.Login;
+import br.com.erp.projeto.dtos.request.Sessao;
 import br.com.erp.projeto.model.Usuario;
 import br.com.erp.projeto.repository.UsuarioRepository;
 import br.com.erp.projeto.security.JWTCreator;

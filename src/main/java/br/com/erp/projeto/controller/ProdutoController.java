@@ -1,10 +1,9 @@
 package br.com.erp.projeto.controller;
 
-import br.com.erp.projeto.dtos.MessageResponseDTO;
+import br.com.erp.projeto.dtos.request.MessageResponseDTO;
 import br.com.erp.projeto.exceptions.ResourceNotFoundException;
 import br.com.erp.projeto.model.Product;
 import br.com.erp.projeto.services.ProductService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/product")
-public class ProductController {
+public class ProdutoController {
 
     @Autowired
     private ProductService productService;

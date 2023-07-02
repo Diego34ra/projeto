@@ -1,11 +1,10 @@
 package br.com.erp.projeto.controller;
 
-import br.com.erp.projeto.dtos.MessageResponseDTO;
+import br.com.erp.projeto.dtos.request.MessageResponseDTO;
 import br.com.erp.projeto.exceptions.ResourceForbiddenException;
 import br.com.erp.projeto.exceptions.ResourceNotFoundException;
 import br.com.erp.projeto.model.Usuario;
 import br.com.erp.projeto.services.UsuarioService;
-import io.swagger.annotations.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

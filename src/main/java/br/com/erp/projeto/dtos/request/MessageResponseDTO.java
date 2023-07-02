@@ -1,4 +1,4 @@
-package br.com.erp.projeto.dtos;
+package br.com.erp.projeto.dtos.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

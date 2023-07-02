@@ -1,6 +1,6 @@
 package br.com.erp.projeto.services;
 
-import br.com.erp.projeto.dtos.MessageResponseDTO;
+import br.com.erp.projeto.dtos.request.MessageResponseDTO;
 import br.com.erp.projeto.exceptions.ResourceNotFoundException;
 import br.com.erp.projeto.model.Usuario;
 import br.com.erp.projeto.repository.UsuarioRepository;
