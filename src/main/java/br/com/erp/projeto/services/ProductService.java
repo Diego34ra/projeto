@@ -42,18 +42,18 @@ public class ProductService {
     }
 
     public MessageResponseDTO updateProduct(Integer id, Product productUpdate) throws ResourceNotFoundException {
-        Product productAntigo = verificaSeExiste(id);
+        Product product = verificaSeExiste(id);
         if(productUpdate.getEan()!=null)
-            productAntigo.setEan(productUpdate.getEan());
+            product.setEan(productUpdate.getEan());
         if(productUpdate.getName()!=null)
-            productAntigo.setName(productUpdate.getName());
+            product.setName(productUpdate.getName());
         if(productUpdate.getPrice()!=null)
-            productAntigo.setPrice(productUpdate.getPrice());
+            product.setPrice(productUpdate.getPrice());
         if(productUpdate.getStock()!=null)
-            productAntigo.setStock(productUpdate.getStock());
+            product.setStock(productUpdate.getStock());
         if(productUpdate.getQtUnit()!=null)
-            productAntigo.setQtUnit(productUpdate.getQtUnit());
-        productRepository.save(productAntigo);
+            product.setQtUnit(productUpdate.getQtUnit());
+        productRepository.save(product);
         return MessageResponseDTO
                 .builder()
                 .code(200)
