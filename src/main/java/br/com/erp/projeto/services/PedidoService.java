@@ -1,7 +1,6 @@
 package br.com.erp.projeto.services;
 
 import br.com.erp.projeto.dtos.request.MessageResponseDTO;
-import br.com.erp.projeto.dtos.request.PedidoDTO;
 import br.com.erp.projeto.exceptions.ResourceNotFoundException;
 import br.com.erp.projeto.model.Item;
 import br.com.erp.projeto.model.Pedido;
@@ -52,7 +51,7 @@ public class PedidoService {
     public List<Item> getItemPedido(List<Item> itens, Pedido pedido){
         return itens.stream().map(item -> {
             Item itemPedido = new Item();
-            Product product = null;
+            Product product;
             try {
                 product = productService.findById(item.getProduto().getId());
             } catch (ResourceNotFoundException e) {
