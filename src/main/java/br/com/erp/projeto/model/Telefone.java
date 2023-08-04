@@ -1,5 +1,6 @@
 package br.com.erp.projeto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,12 +12,12 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Telefone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_telefone")
+    @JsonIgnore
     private Integer id;
     @Column(nullable = false)
     private String DDI;
@@ -26,5 +27,6 @@ public class Telefone {
     private String numero;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
+    @JsonIgnore
     private Cliente cliente;
 }

@@ -27,4 +27,8 @@ public class Pedido {
     @OneToMany(mappedBy = "order")
     private List<Item> itens;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+
 }

@@ -1,5 +1,6 @@
 package br.com.erp.projeto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,10 @@ public class Cliente {
     @Column(nullable = false, unique = true)
     private String cpf;
     @OneToMany(mappedBy = "cliente")
-    private List<Telefone> telefone;
+    private List<Telefone> telefones;
+    @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
+    private List<Pedido> pedidos;
     @Column(nullable = false)
     private String situacao;
 

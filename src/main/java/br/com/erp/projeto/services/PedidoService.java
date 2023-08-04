@@ -2,6 +2,7 @@ package br.com.erp.projeto.services;
 
 import br.com.erp.projeto.dtos.request.MessageResponseDTO;
 import br.com.erp.projeto.exceptions.ResourceNotFoundException;
+import br.com.erp.projeto.model.Cliente;
 import br.com.erp.projeto.model.Item;
 import br.com.erp.projeto.model.Pedido;
 import br.com.erp.projeto.model.Product;
@@ -23,13 +24,17 @@ public class PedidoService {
     @Autowired
     ProductService productService;
     @Autowired
+    ClienteService clienteService;
+    @Autowired
     ItemRepository itemRepository;
 
 
-    public MessageResponseDTO createPedido(Pedido pedido){
+    public MessageResponseDTO createPedido(Pedido pedido) throws ResourceNotFoundException {
         pedido.setDataPedido(LocalDate.now());
-        pedidoRepository.save(pedido);
         List<Item> itensPedido = getItemPedido(pedido.getItens(),pedido);
+        Cliente cliente = clienteService.findById(pedido.getCliente().getId());
+        pedido.setCliente(cliente);
+        pedidoRepository.save(pedido);
         itemRepository.saveAll(itensPedido);
         pedido.setValorTotal(calcularValorPedido(pedido.getItens()));
         pedidoRepository.save(pedido);
