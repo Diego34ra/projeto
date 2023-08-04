@@ -36,4 +36,18 @@ public class PedidoController {
         var pedidoList = pedidoService.findAll();
         return ResponseEntity.ok().body(pedidoList);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Pedido> findById(@RequestHeader("Authorization") String authHeader,
+                                           @PathVariable Integer id) throws ResourceNotFoundException {
+        var pedido = pedidoService.findById(id);
+        return ResponseEntity.ok().body(pedido);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<MessageResponseDTO> deleteById(@RequestHeader("Authorization") String authHeader,
+                                                         @PathVariable Integer id) throws ResourceNotFoundException {
+        var message = pedidoService.deleteById(id);
+        return ResponseEntity.ok().body(message);
+    }
 }

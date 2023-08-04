@@ -21,8 +21,7 @@ public class ProductService {
     }
 
     public Product findById(Integer id) throws ResourceNotFoundException {
-        Product product = verificaSeExiste(id);
-        return product;
+        return verificaSeExiste(id);
     }
 
     public MessageResponseDTO createProduct(Product product){

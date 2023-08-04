@@ -46,6 +46,30 @@ public class PedidoService {
                 .build();
     }
 
+    public List<Pedido> findAll(){
+        return pedidoRepository.findAll();
+    }
+
+    public Pedido findById(Integer id) throws ResourceNotFoundException {
+        return verificaSeExiste(id);
+    }
+
+
+    public MessageResponseDTO deleteById(Integer id) throws ResourceNotFoundException {
+        Pedido pedido = verificaSeExiste(id);
+        pedidoRepository.delete(pedido);
+        return MessageResponseDTO.builder()
+                .status("Ok")
+                .code(200)
+                .message("Pedido com id "+id+" deletado com sucesso;")
+                .build();
+    }
+
+    public Pedido verificaSeExiste(Integer id) throws ResourceNotFoundException {
+        return pedidoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido de id "+id+" não encontrdo."));
+    }
+
     public BigDecimal calcularValorPedido(List<Item> itens) {
         BigDecimal valorTotal = itens.stream()
                 .map(item -> item.getProduto().getPrice().multiply(BigDecimal.valueOf(item.getQuantidade())))
@@ -67,9 +91,5 @@ public class PedidoService {
             itemPedido.setQuantidade(item.getQuantidade());
             return itemPedido;
         }).collect(Collectors.toList());
-    }
-
-    public List<Pedido> findAll(){
-        return pedidoRepository.findAll();
     }
 }
